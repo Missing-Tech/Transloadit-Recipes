@@ -32,16 +32,16 @@ class CustomTheme {
               TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.25),
         ),
       ),
-      bottomAppBarTheme: BottomAppBarTheme(
-          shape: AutomaticNotchedShape(
-            BeveledRectangleBorder(), //Bottom App Bar Shape
-            BeveledRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(8.0),
-              ),
-            ), //Floating Action Button Shape
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: CustomColors.lightPeach,
+        shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(8.0),
+            topRight: Radius.circular(8.0),
           ),
-          color: CustomColors.peach),
+        ),
+      ),
+      bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.peach),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: CustomColors.brown,
         foregroundColor: CustomColors.peach,

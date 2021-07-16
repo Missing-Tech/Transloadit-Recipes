@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:transloadit_recipes/defs/food.dart';
+import 'package:transloadit_recipes/main.dart';
 
-class RecipeCard extends StatefulWidget {
-  const RecipeCard({
+class FoodCard extends StatefulWidget {
+  const FoodCard({
     Key? key,
-    required this.cardTitle,
-    required this.cardSubtitle,
-    required this.cardImage,
-    required this.cardDescription,
-    required this.onPressed,
+    required this.recipe,
+    required this.onSelectedRecipe,
   }) : super(key: key);
 
-  final String cardTitle;
-  final String cardSubtitle;
-  final String cardImage;
-  final String cardDescription;
-  final Function onPressed;
+  final Food recipe;
+  final Function(Food recipe) onSelectedRecipe;
 
   @override
-  _RecipeCardState createState() => _RecipeCardState();
+  _FoodCardState createState() => _FoodCardState();
 }
 
-class _RecipeCardState extends State<RecipeCard> {
+class _FoodCardState extends State<FoodCard> {
   bool isSelected = false;
 
   @override
@@ -34,11 +30,11 @@ class _RecipeCardState extends State<RecipeCard> {
           children: <Widget>[
             ListTile(
               title: Text(
-                widget.cardTitle,
+                widget.recipe.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
               subtitle: Text(
-                widget.cardSubtitle,
+                widget.recipe.subtitle,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -48,7 +44,7 @@ class _RecipeCardState extends State<RecipeCard> {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.cardImage),
+                    image: AssetImage(widget.recipe.image),
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -56,7 +52,7 @@ class _RecipeCardState extends State<RecipeCard> {
             ),
             ListTile(
               subtitle: Text(
-                widget.cardDescription,
+                widget.recipe.description,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -64,15 +60,19 @@ class _RecipeCardState extends State<RecipeCard> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextButton(
-                  child: Text(
+                child: TextButton.icon(
+                  label: Text(
                     !isSelected ? 'SELECT' : 'DESELECT',
                   ),
+                  icon: isSelected
+                      ? Icon(Icons.radio_button_on)
+                      : Icon(Icons.radio_button_off),
                   style: Theme.of(context).textButtonTheme.style,
                   onPressed: () {
-                    widget.onPressed();
                     setState(() {
                       isSelected = !isSelected;
+
+                      widget.onSelectedRecipe(widget.recipe);
                     });
                   },
                 ),
