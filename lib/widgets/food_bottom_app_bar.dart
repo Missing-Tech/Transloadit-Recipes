@@ -20,6 +20,11 @@ class FoodBottomAppBar extends StatefulWidget {
 class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
   bool showingBottomSheet = false;
 
+  toggleBottomSheet() {
+    showingBottomSheet = false;
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -30,11 +35,6 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
             children: [
               IconButton(
                 onPressed: () {
-                  toggleBottomSheet() {
-                    showingBottomSheet = false;
-                    Navigator.of(context).pop();
-                  }
-
                   showingBottomSheet
                       ? toggleBottomSheet()
                       : controller = showBottomSheet(
@@ -59,7 +59,6 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
           ),
         ],
       ),
-      notchMargin: 5,
     );
   }
 }

@@ -5,11 +5,11 @@ import 'rounded_square_avatar.dart';
 class FoodTile extends StatelessWidget {
   const FoodTile({
     Key? key,
-    required this.image,
+    this.image,
     required this.name,
   }) : super(key: key);
 
-  final String image;
+  final String? image;
   final String name;
 
   @override
@@ -18,13 +18,10 @@ class FoodTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: ListTile(
         leading: RoundedSquareAvatar(image: image),
-        title: new Text(
+        title: Text(
           name,
           style: Theme.of(context).textTheme.headline6,
         ),
-        onTap: () {
-          Navigator.pop(context);
-        },
       ),
     );
   }
