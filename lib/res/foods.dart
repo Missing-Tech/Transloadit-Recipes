@@ -15,7 +15,7 @@ class Foods {
       "watermark_url":
           "https://demos.transloadit.com/inputs/transloadit-padded.png",
       "watermark_size": "50%",
-      "watermark_position": "bottom-right",
+      "watermark_position": "center",
       "imagemagick_stack": "v2.0.7"
     },
   );

@@ -29,8 +29,35 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                results.length > 0
+                    ? Navigator.pushNamed(context, '/receipt')
+                    : ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          content: Text(
+                            'No receipt yet',
+                            style: TextStyle(color: CustomColors.peach),
+                          ),
+                          backgroundColor: CustomColors.brown,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      );
+              });
+            },
+            icon: Icon(
+              Icons.receipt_long,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
           Stack(
             children: [
               IconButton(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:transloadit_recipes/defs/food.dart';
-import 'package:transloadit_recipes/main.dart';
 
 class FoodCard extends StatefulWidget {
   const FoodCard({
