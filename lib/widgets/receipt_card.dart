@@ -23,7 +23,7 @@ class _ReceiptCardState extends State<ReceiptCard> {
     return Card(
       elevation: 0,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -50,26 +50,6 @@ class _ReceiptCardState extends State<ReceiptCard> {
               subtitle: Text(
                 "Cost: ${mbCost}MB",
                 style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextButton.icon(
-                  label: Text(
-                    !isSelected ? 'SELECT' : 'DESELECT',
-                  ),
-                  icon: isSelected
-                      ? Icon(Icons.radio_button_on)
-                      : Icon(Icons.radio_button_off),
-                  style: Theme.of(context).textButtonTheme.style,
-                  onPressed: () {
-                    setState(() {
-                      isSelected = !isSelected;
-                    });
-                  },
-                ),
               ),
             ),
           ],

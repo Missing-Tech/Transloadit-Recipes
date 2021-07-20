@@ -1,4 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:transloadit/transloadit.dart';
 import 'package:transloadit_recipes/defs/food.dart';
 import 'package:transloadit_recipes/screens/receipt.dart';
 
@@ -12,7 +15,17 @@ bool isLoading = false;
 
 PersistentBottomSheetController? controller;
 
-void main() {
+late TransloaditClient client;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseApp firebase = await Firebase.initializeApp();
+  RemoteConfig remoteConfig = RemoteConfig.instance;
+  await remoteConfig.fetchAndActivate();
+
+  String key = remoteConfig.getValue('key').asString();
+  String secret = remoteConfig.getValue('secret').asString();
+  client = TransloaditClient(authKey: key, authSecret: secret);
   runApp(MyApp());
 }
 

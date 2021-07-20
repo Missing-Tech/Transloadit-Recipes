@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.transloadit_recipes">
+    package="com.joseph.transloadit_recipes">
    <application
         android:label="transloadit_recipes"
         android:icon="@mipmap/ic_launcher">

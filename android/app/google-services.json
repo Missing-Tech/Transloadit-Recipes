@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "74479529834",
+    "project_id": "transloadit-recipes",
+    "storage_bucket": "transloadit-recipes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74479529834:android:4c568e04f6461950363f13",
+        "android_client_info": {
+          "package_name": "com.joseph.transloadit_recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74479529834-fq2uo1tu0ojjdtuk69pvmolnr99ha62q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWJLk9jAYl-HvHOOTcHqdCEuB0JaXphEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74479529834-fq2uo1tu0ojjdtuk69pvmolnr99ha62q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

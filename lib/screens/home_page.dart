@@ -15,10 +15,6 @@ import 'package:transloadit_recipes/widgets/food_card.dart';
 
 import '../main.dart';
 
-TransloaditClient client = TransloaditClient(
-    authKey: '72a70fba93ce41cba617cfd7c2a44b1a',
-    authSecret: '3b2845e9330051ed3adc06b4217c42e4f504f8f3');
-
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -59,7 +55,6 @@ class _HomePageState extends State<HomePage> {
     Future<TransloaditResponse> future = assembly.createAssembly();
     TransloaditResponse response = await future;
     results.add(Response(response: response.data, name: food.title));
-    //response.data['results'][food.title][0]['ssl_url']
 
     setState(() {
       isLoading = false;
@@ -96,13 +91,17 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: FoodBottomAppBar(
         recipeLength: foodList.length,
+        resultLength: results.length,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: isLoading
           ? FloatingActionButton.extended(
               onPressed: () {},
               isExtended: true,
-              icon: CircularProgressIndicator(color: CustomColors.peach),
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: CircularProgressIndicator(color: CustomColors.peach),
+              ),
               label: Text('COOKING'),
             )
           : FloatingActionButton.extended(

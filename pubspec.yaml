@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   transloadit: ^0.1.2
   path_provider: ^2.0.2
+  intl: ^0.17.0
+  firebase_remote_config: ^0.10.0+3
+  firebase_core: ^1.4.0
 
 dev_dependencies:
   flutter_test:

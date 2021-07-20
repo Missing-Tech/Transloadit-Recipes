@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:transloadit_recipes/defs/food.dart';
 import 'package:transloadit_recipes/defs/response.dart';
-import 'package:transloadit_recipes/res/foods.dart';
-import 'package:transloadit_recipes/widgets/food_bottom_app_bar.dart';
 import 'package:transloadit_recipes/widgets/receipt_card.dart';
 
 import '../main.dart';
@@ -34,39 +33,28 @@ class _ReceiptPageState extends State<ReceiptPage> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: results.length,
+                itemCount: widget.results.length + 1,
                 itemBuilder: (BuildContext context, int index) {
-                  return ReceiptCard(
-                    result: results[index],
-                  );
+                  return index == 0
+                      ? Column(
+                          children: [ReceiptHeader(), ReceiptDivider()],
+                        )
+                      : Column(
+                          children: [
+                            ReceiptCard(
+                              result: results[index - 1],
+                            ),
+                            ReceiptDivider()
+                          ],
+                        );
                 },
               ),
-              // child: ListView(
-              //   children: [
-              //     ReceiptHeader(),
-              //     ReceiptDivider(),
-              //     ReceiptCard(
-              //       recipe: Foods.salad,
-              //       onSelectedRecipe: updateFoodList,
-              //     ),
-              //     ReceiptDivider(),
-              //     ReceiptCard(
-              //       recipe: Foods.beef,
-              //       onSelectedRecipe: updateFoodList,
-              //     ),
-              //     ReceiptDivider(),
-              //     ReceiptCard(
-              //       recipe: Foods.lamb,
-              //       onSelectedRecipe: updateFoodList,
-              //     ),
-              //   ],
-              // ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: FoodBottomAppBar(
-        recipeLength: foodList.length,
+      bottomNavigationBar: BottomAppBar(
+        child: SizedBox(height: 50),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton.extended(
@@ -90,20 +78,20 @@ class ReceiptHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 70,
-        ),
-        Text(
-          'TRANSLOADIT RECIPES',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        Text(
-          '19/07/2021',
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 5),
+      child: Column(
+        children: [
+          Text(
+            'TRANSLOADIT RECIPES',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          Text(
+            DateFormat('dd/MM/yy').format(DateTime.now()),
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ],
+      ),
     );
   }
 }
