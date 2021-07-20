@@ -3,15 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:transloadit/transloadit.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'package:transloadit_recipes/widgets/food_bottom_app_bar.dart';
+import 'package:transloadit_recipes/widgets/food_card.dart';
 import 'package:transloadit_recipes/defs/food.dart';
 import 'package:transloadit_recipes/defs/response.dart';
 import 'package:transloadit_recipes/res/colors.dart';
-import 'package:transloadit_recipes/res/foods.dart';
-
-import 'package:transloadit/transloadit.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:transloadit_recipes/widgets/food_bottom_app_bar.dart';
-import 'package:transloadit_recipes/widgets/food_card.dart';
 
 import '../main.dart';
 
@@ -46,7 +45,10 @@ class _HomePageState extends State<HomePage> {
       isLoading = true;
     });
 
-    TransloaditAssembly assembly = client.newAssembly();
+    TransloaditAssembly assembly = client.newAssembly(params: {
+      'notify_url':
+          'https://us-central1-transloadit-recipes.cloudfunctions.net/receivePOST?token=$token'
+    });
     assembly.addFile(
         file: await imageToFile(path: food.image, name: food.title));
     assembly.addStep(
@@ -72,21 +74,14 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: ListView(
-          children: [
-            FoodCard(
-              recipe: Foods.salad,
+        child: ListView.builder(
+          itemCount: foods.length,
+          itemBuilder: (BuildContext context, int index) {
+            return FoodCard(
+              recipe: foods[index],
               onSelectedRecipe: updateFoodList,
-            ),
-            FoodCard(
-              recipe: Foods.beef,
-              onSelectedRecipe: updateFoodList,
-            ),
-            FoodCard(
-              recipe: Foods.lamb,
-              onSelectedRecipe: updateFoodList,
-            ),
-          ],
+            );
+          },
         ),
       ),
       bottomNavigationBar: FoodBottomAppBar(
