@@ -2,16 +2,36 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../main.dart';
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('received background notification');
+}
+
 class Notifications {
+  static Future<void> initializeNotifications() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    await messaging.getToken().then((t) {
+      token = t!;
+    });
+  }
+
   static Future<void> listenForNotification(BuildContext context) async {
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      navigateToScreen(context, message);
       showNotification(message);
-      Navigator.pushNamed(context, '${message.data["screen"]}');
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      Navigator.pushNamed(context, '${message.data["screen"]}');
+      navigateToScreen(context, message);
     });
+  }
+
+  static navigateToScreen(BuildContext context, RemoteMessage message) {
+    Navigator.pushNamed(context, '${message.data["screen"]}');
   }
 
   static Future<void> showNotification(RemoteMessage message) async {
@@ -30,9 +50,9 @@ class Notifications {
 
     final IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
-      requestSoundPermission: false,
-      requestBadgePermission: false,
-      requestAlertPermission: false,
+      requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
     );
 
     final InitializationSettings initializationSettings =
@@ -51,11 +71,9 @@ class Notifications {
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
 
-    // If `onMessage` is triggered with a notification, construct our own
-    // local notification to show to users using the created channel.
     if (notification != null && android != null) {
       await flutterLocalNotificationsPlugin.show(
-        12345,
+        notification.hashCode,
         notification.title,
         notification.body,
         NotificationDetails(

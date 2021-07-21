@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:transloadit_recipes/main.dart';
 import 'package:transloadit_recipes/res/colors.dart';
+import 'package:transloadit_recipes/utils/food_list.dart';
 
 import 'notification_dot.dart';
-import 'shopping_cart.dart';
+import 'shopping_cart_drawer.dart';
+import 'snackbar.dart';
 
 class FoodBottomAppBar extends StatefulWidget {
   const FoodBottomAppBar({
@@ -41,20 +43,9 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
                     () {
                       results.length > 0
                           ? Navigator.pushNamed(context, '/receipt')
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                content: Text(
-                                  'No receipt yet',
-                                  style: TextStyle(color: CustomColors.peach),
-                                ),
-                                backgroundColor: CustomColors.brown,
-                                shape: BeveledRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.0),
-                                  ),
-                                ),
-                              ),
+                          : showRecipeSnackBar(
+                              context,
+                              text: 'No receipts yet!',
                             );
                     },
                   );
@@ -80,7 +71,7 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
                           builder: (context) {
                             showingBottomSheet = true;
                             return ShoppingCart(
-                              foodList: foodList,
+                              foodList: FoodList.foodList,
                             );
                           },
                         );

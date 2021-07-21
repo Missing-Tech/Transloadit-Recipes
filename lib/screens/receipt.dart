@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transloadit_recipes/defs/food.dart';
 import 'package:transloadit_recipes/defs/response.dart';
 import 'package:transloadit_recipes/widgets/receipt_card.dart';
 
@@ -16,13 +15,9 @@ class ReceiptPage extends StatefulWidget {
 }
 
 class _ReceiptPageState extends State<ReceiptPage> {
-  updateFoodList(Food food) {
-    setState(() {
-      foodList.contains(food) ? foodList.remove(food) : foodList.add(food);
-      if (controller != null) {
-        controller!.setState!(() {});
-      }
-    });
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

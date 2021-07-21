@@ -70,7 +70,6 @@ class _FoodCardState extends State<FoodCard> {
                   onPressed: () {
                     setState(() {
                       isSelected = !isSelected;
-
                       widget.onSelectedRecipe(widget.recipe);
                     });
                   },
