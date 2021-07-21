@@ -18,11 +18,20 @@ bool isLoading = false;
 PersistentBottomSheetController? controller;
 late TransloaditClient client;
 late String token;
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  await initializeSecrets();
+
+  initializeNotifications();
+
+  runApp(MyApp());
+}
+
+Future<void> initializeSecrets() async {
   //Handle Secrets
   RemoteConfig remoteConfig = RemoteConfig.instance;
   await remoteConfig.fetchAndActivate();
@@ -30,15 +39,15 @@ Future<void> main() async {
   String key = remoteConfig.getValue('key').asString();
   String secret = remoteConfig.getValue('secret').asString();
   client = TransloaditClient(authKey: key, authSecret: secret);
+}
 
+Future<void> initializeNotifications() async {
   //Handle push notifications
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   messaging.getToken().then((t) {
     token = t!;
   });
-
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -51,13 +60,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => HomePage(title: 'Transloadit Recipes'),
-        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/': (context) => HomePage(
+              title: 'Transloadit Recipes',
+            ),
         '/receipt': (context) => ReceiptPage(
               results: results,
             ),
       },
+      navigatorKey: navigatorKey,
     );
   }
 }

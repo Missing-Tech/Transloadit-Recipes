@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:transloadit/transloadit.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:transloadit_recipes/utils/notifications.dart';
 
 import 'package:transloadit_recipes/widgets/food_bottom_app_bar.dart';
 import 'package:transloadit_recipes/widgets/food_card.dart';
@@ -22,6 +23,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    Notifications.listenForNotification(context);
+    super.initState();
+  }
+
   updateFoodList(Food food) {
     setState(() {
       foodList.contains(food) ? foodList.remove(food) : foodList.add(food);
@@ -47,7 +54,7 @@ class _HomePageState extends State<HomePage> {
 
     TransloaditAssembly assembly = client.newAssembly(params: {
       'notify_url':
-          'https://us-central1-transloadit-recipes.cloudfunctions.net/receivePOST?token=$token'
+          'https://us-central1-transloadit-recipes.cloudfunctions.net/receivePOST?name=${food.title}&token=$token'
     });
     assembly.addFile(
         file: await imageToFile(path: food.image, name: food.title));
