@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transloadit_recipes/defs/response.dart';
 import 'package:transloadit_recipes/main.dart';
-import 'package:transloadit_recipes/res/colors.dart';
 import 'package:transloadit_recipes/utils/food_list.dart';
 
 import 'notification_dot.dart';
@@ -35,30 +35,36 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Stack(
-            children: [
-              IconButton(
-                onPressed: () {
-                  setState(
-                    () {
-                      results.length > 0
-                          ? Navigator.pushNamed(context, '/receipt')
-                          : showRecipeSnackBar(
-                              context,
-                              text: 'No receipts yet!',
-                            );
+          ValueListenableBuilder(
+            valueListenable: results,
+            builder:
+                (BuildContext context, List<Response> value, Widget? child) {
+              return Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          results.value.length > 0
+                              ? Navigator.pushNamed(context, '/receipt')
+                              : showRecipeSnackBar(
+                                  context,
+                                  text: 'No receipts yet!',
+                                );
+                        },
+                      );
                     },
-                  );
-                },
-                icon: Icon(
-                  Icons.receipt_long,
-                  color: Theme.of(context).accentColor,
-                ),
-              ),
-              widget.resultLength > 0
-                  ? NotficationDot(recipeLength: widget.resultLength)
-                  : SizedBox(),
-            ],
+                    icon: Icon(
+                      Icons.receipt_long,
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
+                  value.length > 0
+                      ? NotficationDot(recipeLength: value.length)
+                      : SizedBox(),
+                ],
+              );
+            },
           ),
           Stack(
             children: [

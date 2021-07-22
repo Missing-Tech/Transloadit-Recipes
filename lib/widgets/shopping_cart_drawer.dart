@@ -21,12 +21,13 @@ class _ShoppingCartState extends State<ShoppingCart> {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: widget.foodList.length > 0
-              ? widget.foodList
-                  .map((e) => FoodTile(image: e.image, name: e.title))
-                  .toList()
-              : <Widget>[FoodTile(name: 'Add something to your cart!')]),
+        mainAxisSize: MainAxisSize.min,
+        children: widget.foodList.length > 0
+            ? widget.foodList
+                .map((e) => FoodTile(image: e.image, name: e.title))
+                .toList()
+            : <Widget>[FoodTile(name: 'Add something to your cart!')],
+      ),
     );
   }
 }

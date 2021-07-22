@@ -37,7 +37,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                       : Column(
                           children: [
                             ReceiptCard(
-                              result: results[index - 1],
+                              result: results.value[index - 1],
                             ),
                             ReceiptDivider()
                           ],

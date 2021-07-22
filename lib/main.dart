@@ -12,7 +12,7 @@ import 'screens/home_page.dart';
 import 'utils/notifications.dart';
 
 List<Food> foods = [Foods.salad, Foods.beef, Foods.lamb];
-List<Response> results = [];
+ValueNotifier<List<Response>> results = ValueNotifier<List<Response>>([]);
 ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
 PersistentBottomSheetController? controller;
 late TransloaditClient client;
@@ -39,7 +39,6 @@ Future<void> initializeSecrets() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
               title: 'Transloadit Recipes',
             ),
         '/receipt': (context) => ReceiptPage(
-              results: results,
+              results: results.value,
             ),
       },
       navigatorKey: navigatorKey,

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:transloadit/transloadit.dart';
@@ -50,7 +49,8 @@ class Transloadit {
           onComplete: onCompleteUpload,
         );
         TransloaditResponse response = await future;
-        results.add(Response(response: response.data, name: food.title));
+        results.value = List.from(results.value)
+          ..add(Response(response: response.data, name: food.title));
       },
     );
   }

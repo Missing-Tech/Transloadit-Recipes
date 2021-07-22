@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/res/colors.dart';
-
 import 'rounded_square_avatar.dart';
 
 class FoodTile extends StatelessWidget {

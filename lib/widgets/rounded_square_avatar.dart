@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/res/colors.dart';
 
 class RoundedSquareAvatar extends StatelessWidget {
   const RoundedSquareAvatar({Key? key, this.image, this.filter})

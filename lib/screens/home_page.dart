@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: FoodBottomAppBar(
         recipeLength: FoodList.foodList.length,
-        resultLength: results.length,
+        resultLength: results.value.length,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ValueListenableBuilder(
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     setState(
                       () {
-                        results.clear();
+                        results.value.clear();
                         Transloadit.sendToTransloadit(
                           foodList: FoodList.foodList,
                           onCompleteUpload: onCompleteUpload,
