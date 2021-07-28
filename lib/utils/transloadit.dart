@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:transloadit/transloadit.dart';
-import 'package:transloadit_recipes/defs/food.dart';
-import 'package:transloadit_recipes/defs/response.dart';
+import '../defs/food.dart';
+import '../defs/response.dart';
 
 import '../main.dart';
 import 'food_list.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/defs/response.dart';
-import 'package:transloadit_recipes/main.dart';
-import 'package:transloadit_recipes/utils/food_list.dart';
+
+import '../main.dart';
+import '../defs/response.dart';
+import '../utils/food_list.dart';
 
 import 'notification_dot.dart';
 import 'shopping_cart_drawer.dart';
@@ -60,7 +61,7 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
                     ),
                   ),
                   value.length > 0
-                      ? NotficationDot(recipeLength: value.length)
+                      ? NotficationDot(text: value.length)
                       : SizedBox(),
                 ],
               );
@@ -88,7 +89,7 @@ class _FoodBottomAppBarState extends State<FoodBottomAppBar> {
                 ),
               ),
               widget.recipeLength > 0
-                  ? NotficationDot(recipeLength: widget.recipeLength)
+                  ? NotficationDot(text: widget.recipeLength)
                   : SizedBox(),
             ],
           ),

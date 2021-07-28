@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/res/colors.dart';
+import '../res/colors.dart';
 
 class NotficationDot extends StatefulWidget {
-  const NotficationDot({Key? key, required this.recipeLength})
-      : super(key: key);
+  const NotficationDot({Key? key, required this.text}) : super(key: key);
 
-  final int recipeLength;
+  final int text;
 
   @override
   _NotficationDotState createState() => _NotficationDotState();
@@ -26,7 +25,7 @@ class _NotficationDotState extends State<NotficationDot> {
           minHeight: 16,
         ),
         child: Text(
-          '${widget.recipeLength}',
+          '${widget.text}',
           style: TextStyle(
             color: CustomColors.peach,
             fontSize: 10,

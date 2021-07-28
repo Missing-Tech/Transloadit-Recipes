@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/res/colors.dart';
+import '../res/colors.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showRecipeSnackBar(
     BuildContext context,

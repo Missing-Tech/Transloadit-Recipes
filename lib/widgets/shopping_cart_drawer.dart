@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/defs/food.dart';
+import '../defs/food.dart';
 
 import 'food_tile.dart';
 

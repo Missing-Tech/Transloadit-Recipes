@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/utils/food_list.dart';
 
-import 'package:transloadit_recipes/utils/notifications.dart';
-import 'package:transloadit_recipes/utils/transloadit.dart';
-import 'package:transloadit_recipes/widgets/food_bottom_app_bar.dart';
-import 'package:transloadit_recipes/widgets/food_card.dart';
-import 'package:transloadit_recipes/defs/food.dart';
-import 'package:transloadit_recipes/res/colors.dart';
+import '../utils/food_list.dart';
+import '../utils/notifications.dart';
+import '../utils/transloadit.dart';
+import '../widgets/food_bottom_app_bar.dart';
+import '../widgets/food_card.dart';
+import '../defs/food.dart';
+import '../res/colors.dart';
 
 import '../main.dart';
 
@@ -51,8 +51,8 @@ class _HomePageState extends State<HomePage> {
           itemCount: foods.length,
           itemBuilder: (BuildContext context, int index) {
             return FoodCard(
-              recipe: foods[index],
-              onSelectedRecipe: updateFoodList,
+              food: foods[index],
+              onSelectedFood: updateFoodList,
             );
           },
         ),

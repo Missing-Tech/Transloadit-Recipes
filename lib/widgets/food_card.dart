@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/defs/food.dart';
+import '../defs/food.dart';
 
 class FoodCard extends StatefulWidget {
   const FoodCard({
     Key? key,
-    required this.recipe,
-    required this.onSelectedRecipe,
+    required this.food,
+    required this.onSelectedFood,
   }) : super(key: key);
 
-  final Food recipe;
-  final Function(Food recipe) onSelectedRecipe;
+  final Food food;
+  final Function(Food recipe) onSelectedFood;
 
   @override
   _FoodCardState createState() => _FoodCardState();
@@ -29,11 +29,11 @@ class _FoodCardState extends State<FoodCard> {
           children: <Widget>[
             ListTile(
               title: Text(
-                widget.recipe.title,
+                widget.food.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
               subtitle: Text(
-                widget.recipe.subtitle,
+                widget.food.subtitle,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -43,7 +43,7 @@ class _FoodCardState extends State<FoodCard> {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.recipe.image),
+                    image: AssetImage(widget.food.image),
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -51,7 +51,7 @@ class _FoodCardState extends State<FoodCard> {
             ),
             ListTile(
               subtitle: Text(
-                widget.recipe.description,
+                widget.food.description,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
@@ -70,7 +70,7 @@ class _FoodCardState extends State<FoodCard> {
                   onPressed: () {
                     setState(() {
                       isSelected = !isSelected;
-                      widget.onSelectedRecipe(widget.recipe);
+                      widget.onSelectedFood(widget.food);
                     });
                   },
                 ),

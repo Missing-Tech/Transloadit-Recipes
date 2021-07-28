@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transloadit_recipes/defs/response.dart';
-import 'package:transloadit_recipes/widgets/receipt_card.dart';
+import '../defs/response.dart';
+import '../widgets/receipt_card.dart';
 
 import '../main.dart';
 

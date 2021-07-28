@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:transloadit/transloadit.dart';
-import 'package:transloadit_recipes/defs/food.dart';
-import 'package:transloadit_recipes/res/foods.dart';
-import 'package:transloadit_recipes/screens/receipt.dart';
 
+import 'defs/food.dart';
+import 'res/foods.dart';
+import 'screens/receipt_page.dart';
 import 'defs/response.dart';
 import 'res/theme.dart';
 import 'screens/home_page.dart';

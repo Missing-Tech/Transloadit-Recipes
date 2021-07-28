@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transloadit_recipes/defs/response.dart';
+import '../defs/response.dart';
 
 class ReceiptCard extends StatefulWidget {
   const ReceiptCard({
