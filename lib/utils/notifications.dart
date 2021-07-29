@@ -4,10 +4,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../main.dart';
 
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('received background notification');
-}
-
 class Notifications {
   static Future<void> initializeNotifications() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -18,13 +14,13 @@ class Notifications {
   }
 
   static Future<void> listenForNotification(BuildContext context) async {
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-
+    // Received a notification while app is in foreground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       navigateToScreen(context, message);
       showNotification(message);
     });
 
+    // Opened a notification while app is in background
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       navigateToScreen(context, message);
     });
